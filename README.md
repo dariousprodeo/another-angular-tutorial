@@ -38,3 +38,18 @@ If you are a real hacker and followed my earlier suggestion of typing `ng help`,
 ### 👁️ 004 - Having a visual taste.
 
 Once the download is done, let's run whatever we have downloaded! If you open the `angular-tutorial` (if you named it that way) a bunch of files you might be familiar with will come up, such as `index.html` or `styles.css`, they have to do something, _right_? The answer is **yes**! Now, open a terminal and type `ng serve`. Make sure your current directory is `angular-tutorial` and **not** the parent, if you execute `ng serve` while in the parent folder the following error will pop up: `This command is not available when running the Angular CLI outside a workspace.` Once the building is done, the terminal itself will tell you where to look at, that is `localhost:4200`, you can change the port by running `ng serve --port [port number]` but keep in mind that next time you execute `ng serve` you will have to consider the 4200 port again. At this point, you will see a simple landing page, and that's it for this section, well done!
+
+## 🏗️ 01 - Messing around.
+
+When i first started learning Angular, i didn't know where to begin, so the first thing i did was paying attention to the things i may already know, like the HTML and CSS files most of you are familiar with.
+
+### 🦕 011 - First slow steps.
+
+Let's start from there, go to `src/index.html` and edit the **title tag**, like so `<title>test</title>` and save the change. What you will see are two different things:
+
+1. As soon as you save, the page automatically refreshes.
+2. Some information appears in the terminal.
+
+That information is extremely important, it will help you understand where a potential error lies.
+
+For example, let's induce an error, go to `src/main.ts`, edit `bootstrapApplication(App, appConfig) ...` into `bootstrapApplication(App, AppConfig)` and save. The terminal will give you everything you need to know about what went wrong, without using big words.
