@@ -33,7 +33,7 @@ If you are a real hacker and followed my earlier suggestion of typing `ng help`,
 
 - _Do i need to create a folder, change directory to that folder and then executing `ng new angular-tutorial`?_
 - **No**, if you do this you will have nested folders; the Angular workspace will be inside the folder you've just created. Unless that's what you want (i don't judge), simply execute the command in your project directory.
-  You will be asked to select the stylesheet system you would like to use (for this tutorial we will use CSS) or which AI tools you want Angular to integrate with (for this tutorial we **will not** use any AI tools).
+  You will be asked to select the stylesheet system you would like to use (for this tutorial we will use CSS), if you want to enable Server-Side Rendering (SSR) and Static Site Generation (for this tutorial we will select `N`) or which AI tools you want Angular to integrate with (for this tutorial we **will not** use any AI tools).
 
 ### 👁️ 004 - Having a visual taste.
 
