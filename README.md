@@ -52,4 +52,21 @@ Let's start from there, go to `src/index.html` and edit the **title tag**, like 
 
 That information is extremely important, it will help you understand where a potential error lies.
 
-For example, let's induce an error, go to `src/main.ts`, edit `bootstrapApplication(App, appConfig) ...` into `bootstrapApplication(App, AppConfig)` and save. The terminal will give you everything you need to know about what went wrong, without using big words.
+For example, let's induce an error, go to `src/main.ts`, edit `bootstrapApplication(App, appConfig) ...` into `bootstrapApplication(App, AppConfig)` and save. The terminal will tell you everything you need to know about what went wrong, without using big words.
+
+### 🏗️ 012 - Your first simple app.
+
+Now let's make something of our own, go to `src/main.ts` and cancel everything, don't worry nothing will explode and no error will show in the terminal. The landing page will disappear and we will soon understand why. An important concept to grasp is that in Angular we have the so called **Angular components**, which are basically reusable pieces of the user interface. It will soon be clear what _reusable_ mean. To define an Angular component, we use `@Component` associated with a **TypeScript class**. Paste the following code into `main.ts`:
+
+```typescript
+import { Component } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+
+@Component({
+  selector: "app-root",
+  template: "<h1>Lorem ipsum!</h1>",
+})
+class MyApp {}
+
+bootstrapApplication(MyApp);
+```
