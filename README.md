@@ -56,7 +56,11 @@ For example, let's induce an error, go to `src/main.ts`, edit `bootstrapApplicat
 
 ### 🏗️ 012 - Your first simple app.
 
-Now let's make something of our own, go to `src/main.ts` and cancel everything, don't worry nothing will explode and no error will show in the terminal. The landing page will disappear and we will soon understand why. An important concept to grasp is that in Angular we have the so called **Angular components**, which are basically reusable pieces of the user interface. It will soon be clear what _reusable_ mean. To define an Angular component, we use `@Component` associated with a **TypeScript class**. Paste the following code into `main.ts`:
+Now let's make something of our own, go to `src/main.ts` and cancel everything, don't worry nothing will explode and no error will show in the terminal. The landing page will disappear and we will soon understand why.
+
+An important concept to grasp is that in Angular there are the so called **Angular components**, which are basically reusable pieces of the user interface. It will soon be clear what _reusable_ means. To define an Angular component, we use `@Component` associated with a **TypeScript class**.
+
+Paste the following code into `main.ts`:
 
 ```typescript
 import { Component } from "@angular/core";
@@ -113,13 +117,14 @@ you will have the following error:
 ✘ [ERROR] TS1117: An object literal cannot have multiple properties with the same name.
 ```
 
-- Given that the `selector` property refers to the HTML tag that's in `index.html`, what if i change either of them?
+❓ Given that the `selector` property refers to the HTML tag that's in `index.html`, what if i change either of them?
 
-- If they **don't match** a blank page will show up, you will **not** have any error. As long as they match, you can change their names.
+If they **don't match** a blank page will show up, you will **not** have any error. As long as they match, you can change their names.
 
 ```html
 <body>
   <root></root>
+  <!-- We changed the tag name -->
 </body>
 ```
 
@@ -132,3 +137,41 @@ class MyApp {}
 ```
 
 `bootstrapApplication(MyApp)` allows you to display the component. It _can_ accept more than one parameter. Try and comment it out, and let me know if you get an error or a blank page!
+
+🤿 - _Diver section_
+
+This part is **not essential** to understand Angular. You may ask yourself (...said no one ever) _does the file have to be named `main.ts`?_ And the answer is... _it depends_.
+
+Let's try and rename `main.ts` to `test.ts`, let's interrupt the execution and run Angular again. The following error will come up:
+
+```bash
+✘ [ERROR] Could not resolve "./angular-tutorial/src/main.ts"
+```
+
+❓ How come it still says `main.ts` if i renamed it to `test.ts`?
+
+Because Angular is configured in a way that certain file names will be used for specific reasons, in this case `main.ts`. Now, interrupt the execution from the terminal and from your editor, go to the file `/angular.json`.
+
+This is the file responsable for the error. Pay attention to the following part of the file:
+
+```json
+...
+"options": {
+  "browser": "src/main.ts",
+  "tsConfig": "tsconfig.app.json",
+  ...
+}
+```
+
+if you edit it in the following way:
+
+```json
+...
+"options": {
+  "browser": "src/test.ts", // <--- This changed!
+  "tsConfig": "tsconfig.app.json",
+  ...
+}
+```
+
+and re-execute `ng serve` (while keeping `test.ts` instead of `main.ts`), the error won't show up again!
