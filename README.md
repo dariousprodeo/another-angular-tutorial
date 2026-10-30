@@ -117,11 +117,12 @@ you will have the following error:
 ✘ [ERROR] TS1117: An object literal cannot have multiple properties with the same name.
 ```
 
-❓ Given that the `selector` property refers to the HTML tag that's in `index.html`, what if i change either of them?
+❓ _Given that the `selector` property refers to the HTML tag that's in `index.html`, what if i change either of them?_
 
 If they **don't match** a blank page will show up, you will **not** have any error. As long as they match, you can change their names.
 
 ```html
+<!-- index.html -->
 <body>
   <root></root>
   <!-- We changed the tag name -->
@@ -129,6 +130,7 @@ If they **don't match** a blank page will show up, you will **not** have any err
 ```
 
 ```typescript
+// main.ts
 @Component({
   selector: "root",
   template: "<h1>Lorem ipsum!</h1>",
@@ -138,7 +140,7 @@ class MyApp {}
 
 `bootstrapApplication(MyApp)` allows you to display the component. It _can_ accept more than one parameter. Try and comment it out, and let me know if you get an error or a blank page!
 
-🤿 - _Diver section_
+### 🤿 - _Diver section_
 
 This part is **not essential** to understand Angular. You may ask yourself (...said no one ever) _does the file have to be named `main.ts`?_ And the answer is... _it depends_.
 
