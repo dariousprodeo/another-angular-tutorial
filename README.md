@@ -70,3 +70,65 @@ class MyApp {}
 
 bootstrapApplication(MyApp);
 ```
+
+Let's understand what we just did.
+
+`@Component` is **not** available in TypeScript vanilla, so we have to take it from somewhere, and that somewhere has to do something with Angular itself.
+
+```typescript
+import { Component } from "@angular/core";
+```
+
+The module `@angular/core` is the _where_.
+
+```typescript
+import { bootstrapApplication } from "@angular/platform-browser";
+```
+
+Same thing, just the module changes.
+
+```typescript
+@Component({
+  selector: "app-root",
+  template: "<h1>Lorem ipsum!</h1>",
+})
+```
+
+This is the interesting part. The parameter of the `@Component` is an object that specifies how the component is rendered; in this case:
+
+1. `selector:` refers to the **html tag** that is in the `index.html` file.
+2. `template:` refers to an **inline html element**. Keep in mind that **only one** template is allowed, if you do the following:
+
+```typescript
+@Component({
+  selector: "app-root",
+  template: "<h1>Lorem ipsum!</h1>",
+  template: "<h2>Lorem ipsum!</h2>",
+})
+```
+
+you will have the following error:
+
+```bash
+✘ [ERROR] TS1117: An object literal cannot have multiple properties with the same name.
+```
+
+- Given that the `selector` property refers to the HTML tag that's in `index.html`, what if i change either of them?
+
+- If they **don't match** a blank page will show up, you will **not** have any error. As long as they match, you can change their names.
+
+```html
+<body>
+  <root></root>
+</body>
+```
+
+```typescript
+@Component({
+  selector: "root",
+  template: "<h1>Lorem ipsum!</h1>",
+})
+class MyApp {}
+```
+
+`bootstrapApplication(MyApp)` allows you to display the component. It _can_ accept more than one parameter. Try and comment it out, and let me know if you get an error or a blank page!
