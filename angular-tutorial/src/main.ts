@@ -1,6 +1,14 @@
+import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+@Component({
+  selector: 'root',
+  template: '<h1>Hi, my name is {{name}} {{lastName}}</h1>',
+  styleUrl: '../test.css',
+})
+class MyApp {
+  name = 'John';
+  lastName = 'Doe';
+}
+
+bootstrapApplication(MyApp);
