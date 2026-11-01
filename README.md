@@ -1,6 +1,6 @@
 # Angular tutorial.
 
-A _healthy_ amount of AI was used to make this tutorial, it was **not** fully prompted by a LLM.
+A _healthy_ amount of AI was used to make this tutorial, it was **not** fully prompted by a LLM. The _diver sections_ are **not** essential, especially if you are just starting out. It simply gives you insights on what's going on under the hood.
 
 ## 🦹 00 - Setting it all up!
 
