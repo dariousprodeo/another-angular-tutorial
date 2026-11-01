@@ -44,9 +44,95 @@ You will be asked to select the stylesheet system you would like to use (for thi
 
 ### 👁️ 004 - Having a visual taste.
 
-Once the download is done, let's run whatever we have downloaded! If you open the `angular-tutorial` (if you named it that way) a bunch of files you might be familiar with will come up, such as `index.html` or `styles.css`, they have to do something, _right_? The answer is **yes**!
+Once the download is done, let's run whatever we have downloaded! If you open the `angular-tutorial` (if you named it that way) a bunch of files you might be familiar with will come up, such as `index.html` or `styles.css`, they have to do something, _right_?
 
-Now, open a terminal and type `ng serve`. Make sure your current directory is `angular-tutorial` and **not** the parent, if you execute `ng serve` while in the parent folder the following error will pop up:
+The answer is **yes**! Now, open a terminal and type `ng serve`. Make sure your current directory is `angular-tutorial` and **not** the parent, if you execute `ng serve` while in the parent folder the following error will pop up:
+
+```bash
+This command is not available when running the Angular CLI outside a workspace.
+```
+
+Once the building is done, the terminal itself will tell you where to look at, that is `localhost:4200`, you can change the port by running:
+
+```bash
+ng serve --port [port_number]
+```
+
+but keep in mind that next time you execute `ng serve` you will have to consider the 4200 port again. At this point, you will see a simple landing page, and that's it for this section, well done!
+
+## 🏗️ 01 - Messing around!
+
+When i first started learning Angular, i didn't know where to begin, so the first thing i did was paying attention to the things i may already know, like the HTML and CSS files most of you are familiar with.
+
+### 🦕 011 - First slow steps.
+
+Let's start from there, go to `src/index.html` and edit the **title tag**, like so `<title>test</title>` and save the change. What you will see are two different things:
+
+1. As soon as you save, the page automatically refreshes.
+2. Some information appears in the terminal.
+
+That information is extremely important, it will help you understand where a potential error lies.
+
+For example, let's induce an error, go to `src/main.ts`, edit `bootstrapApplication(App, appConfig) ...` into `bootstrapApplication(App, AppConfig)` and save. The terminal will tell you everything you need to know about what went wrong, without using big words.
+
+### 🏗️ 012 - Your first simple app.
+
+Now let's make something of our own, go to `src/main.ts` and cancel everything, don't worry nothing will explode and no error will show in the terminal. The landing page will disappear and we will soon understand why.
+
+An important concept to grasp is that in Angular there are the so called **Angular components**, which are basically reusable pieces of the user interface. It will soon be clear what _reusable_ means. To define an Angular component, we use `@Component` associated with a **TypeScript class**.
+
+Paste the following code into `main.ts`:
+
+```typescript
+import { Component } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+
+@Component({
+  selector: "app-root",
+  template: "<h1>Lorem ipsum!</h1>",
+})
+class MyApp {}
+
+bootstrapApplication(MyApp);
+```
+
+Let's understand what we just did.
+
+`@Component` is **not** available in TypeScript vanilla, so we have to take it from somewhere, and that somewhere has to do something with Angular itself.
+
+```typescript
+import { Component } from "@angular/core";
+```
+
+The module `@angular/core` is the _where_.
+
+```typescript
+import { bootstrapApplication } from "@angular/platform-browser";
+```
+
+Same thing, just the module changes.
+
+```typescript
+@Component({
+  selector: "app-root",
+  template: "<h1>Lorem ipsum!</h1>",
+})
+```
+
+This is the interesting part. The parameter of the `@Component` is an object that specifies how the component is rendered; in this case:
+
+1. `selector:` refers to the **html tag** that is in the `index.html` file.
+2. `template:` refers to an **inline html element**. Keep in mind that **only one** template is allowed, if you do the following:
+
+```typescript
+@Component({
+  selector: "app-root",
+  template: "<h1>Lorem ipsum!</h1>",
+  template: "<h2>Lorem ipsum!</h2>",
+})
+```
+
+you will have the following error:
 
 ```bash
 This command is not available when running the Angular CLI outside a workspace.
