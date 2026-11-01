@@ -211,7 +211,7 @@ We should be familiar with this code, expect for the following:
 
 ❓ _So if i want to import a stylesheet file from another directory, i just have to change the `styleUrl` with its relative path?_
 
-Unfortunaly it's not like that! What will happen is that, if you have the following:
+Unfortunately it's not like that! What will happen is that, if you have the following:
 
 ```typescript
 // main.ts
@@ -231,7 +231,7 @@ class MyApp {
 bootstrapApplication(MyApp);
 ```
 
-**both** `mystyle.css` and `styles.css` will be considered. As you might have guessed `angular.json` is responsable for this. Open it and you will find this section:
+**both** `mystyle.css` and `styles.css` will be considered. As you might have guessed, `angular.json` is responsable for this. Open it and you will find this section:
 
 ```json
 // angular.json
