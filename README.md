@@ -55,7 +55,95 @@ This command is not available when running the Angular CLI outside a workspace.
 Once the building is done, the terminal itself will tell you where to look at, that is `localhost:4200`, you can change the port by running
 
 ```bash
-ng serve --port [port number]
+✘ [ERROR] Could not resolve "./angular-tutorial/src/main.ts"
 ```
 
-but keep in mind that next time you execute `ng serve` you will have to consider the 4200 port again. At this point, you will see a simple landing page, and that's it for this section, well done!
+❓ How come it still says `main.ts` if i renamed it to `test.ts`?
+
+Because Angular is configured in a way that certain file names will be used for specific reasons, in this case `main.ts`. Now, interrupt the execution from the terminal and from your editor, go to the file `/angular.json`.
+
+This is the file responsable for the error. Pay attention to the following part of the file:
+
+```json
+...
+"options": {
+  "browser": "src/main.ts",
+  "tsConfig": "tsconfig.app.json",
+  ...
+}
+```
+
+if you edit it in the following way:
+
+```json
+...
+"options": {
+  "browser": "src/test.ts", // <--- This changed!
+  "tsConfig": "tsconfig.app.json",
+  ...
+}
+```
+
+and re-execute `ng serve` (while keeping `test.ts` instead of `main.ts`), the error won't show up again!
+
+### 🏗️ 013 - Your second simple app.
+
+Now that we are somewhat familiar with Angular, let's spice things up and get a glance of Angular potential! Don't worry, no big code ahead... for now.
+
+```typescript
+// main.ts
+import { Component } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+
+@Component({
+  selector: "root",
+  template: "<h1>Hi, my name is {{name}} {{lastName}}</h1>",
+  styleUrl: "styles.css",
+})
+class MyApp {
+  name = "John";
+  lastName = "Doe";
+}
+
+bootstrapApplication(MyApp);
+```
+
+We should be familiar with this code, expect for the following:
+
+1. `styleUrl`: pretty straightforward, it refers to the **relative path** of the css file. In this case, `styles.css` shares the same directory as the `main.ts` file. In the next diver section we expand on this.
+
+2. `template: "<h1>Hi, my name is {{name}} {{lastName}}</h1>",`: in general, it is still an inline element _but_ the nested curly braces
+   refer to the _dynamic text_, this text is taken from the typescript class.
+
+### 🤿 - _Diver section_
+
+❓ _So if i want to import a stylesheet file from another directory, i just have to change the `styleUrl` with its relative path?_
+
+Unfortunately it's not like that! What will happen is that, if you have the following:
+
+```typescript
+// main.ts
+import { Component } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+
+@Component({
+  selector: "root",
+  template: "<h1>Hi, my name is {{name}} {{lastName}}</h1>",
+  styleUrl: "./styleDirectory/mystyle.css",
+})
+class MyApp {
+  name = "John";
+  lastName = "Doe";
+}
+
+bootstrapApplication(MyApp);
+```
+
+**both** `mystyle.css` and `styles.css` will be considered. As you might have guessed, `angular.json` is responsable for this. Open it and you will find this section:
+
+```json
+// angular.json
+...
+"styles": ["src/styles.css"]
+...
+```
