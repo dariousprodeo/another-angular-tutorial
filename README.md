@@ -233,3 +233,41 @@ bootstrapApplication(MyApp);
 "styles": ["src/styles.css"]
 ...
 ```
+
+## 💪 02 - Now we're talking!
+
+Let's try and build more complex stuff, don't worry we'll take it slow. Just a heads-up on standards used by TypeScript:
+
+1. camelCase: used for variable names, function names, and method names.
+
+2. PascalCase: used for class names and interfaces.
+
+```typescript
+// main.ts
+import { Component } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+
+@Component({
+  selector: "app-root",
+  template: ` <div>
+    <span>Insert your name: </span>
+    <input #Input placeholder="{{ name }}, insert your SSN" />
+    <button (click)="textMethod(Input.value)">Trust me bro.</button>
+    <h2>{{ textSent }}</h2>
+  </div>`,
+})
+export class MyApp {
+  name = "John";
+  textSent = "";
+
+  textMethod(text: string) {
+    this.textSent = text;
+  }
+}
+
+bootstrapApplication(MyApp);
+```
+
+We use the `div` element as a wrapper element to get around the fact that we can't use multiple templates, as mentioned before.
+
+Make sure you use the **backticks** `` instead of the quotation marks ""; if you use the quotation marks you will get an error and the component will not be rendered.
