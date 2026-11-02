@@ -2,13 +2,21 @@ import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 
 @Component({
-  selector: 'root',
-  template: '<h1>Hi, my name is {{name}} {{lastName}}</h1>',
-  styleUrl: './styles.css',
+  selector: 'app-root',
+  template: ` <div>
+    <span>Insert your name: </span>
+    <input #Input placeholder="{{ name }}, insert your SSN" />
+    <button (click)="textMethod(Input.value)">Trust me bro.</button>
+    <h2>{{ textSent }}</h2>
+  </div>`,
 })
-class MyApp {
+export class MyApp {
   name = 'John';
-  lastName = 'Doe';
+  textSent = '';
+
+  textMethod(text: string) {
+    this.textSent = text;
+  }
 }
 
 bootstrapApplication(MyApp);
